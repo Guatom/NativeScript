@@ -595,8 +595,13 @@ export class FlexboxLayout extends FlexboxLayoutBase {
                     } else {
                         accumulatedRoundError = rawCalculatedWidth - roundedCalculatedWidth;
                     }
-                    child.measure(makeMeasureSpec(roundedCalculatedWidth, EXACTLY), makeMeasureSpec(child.getMeasuredHeight(), EXACTLY));
+                    //child.measure(makeMeasureSpec(roundedCalculatedWidth, EXACTLY), makeMeasureSpec(child.getMeasuredHeight(), EXACTLY));
+                    child.measure(makeMeasureSpec(roundedCalculatedWidth, EXACTLY), makeMeasureSpec(0, UNSPECIFIED));
                     child.effectiveMinWidth = minWidth;
+                    flexLine._crossSize = Math.max(
+                        flexLine._crossSize,
+                        child.getMeasuredHeight() + lp.effectiveMarginTop + lp.effectiveMarginBottom
+                    );
                 }
                 flexLine._mainSize += child.getMeasuredWidth() + lp.effectiveMarginLeft + lp.effectiveMarginRight;
             } else {
